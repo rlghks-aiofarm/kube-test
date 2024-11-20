@@ -21,7 +21,6 @@ jobs:
 
       - name: Initialize and update submodules
         run: |
-          git submodule deinit -f --all
           git submodule update --init --recursive
           git submodule status
           # 서브모듈 상태 출력
