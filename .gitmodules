@@ -1,6 +1,8 @@
 [submodule "repo1"]
     path = repo1
     url = https://github.com/rlghks-aiofarm/test-repo1.git
+    branch = main
 [submodule "repo2"]
     path = repo2
     url = https://github.com/rlghks-aiofarm/test-repo2.git
+    branch = main
