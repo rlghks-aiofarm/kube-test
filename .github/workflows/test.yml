@@ -25,10 +25,10 @@ jobs:
           git submodule status
 
       - name: List repo1 contents
-        run: ls repo1/
+        run: ls -la repo1/
 
       - name: List repo2 contents
-        run: ls repo2/
+        run: ls -la repo2/
 
       # Python 설치
       - name: Set up Python
