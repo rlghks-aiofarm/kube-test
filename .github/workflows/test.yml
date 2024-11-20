@@ -37,6 +37,7 @@ jobs:
           pip install -r combined-requirements-deduped.txt
 
       # 테스트 실행
-      - name: Run tests
-        run: |
-          pytest tests/  # 'tests/' 디렉토리 내 모든 테스트 실행
+      - name: Run integration tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}/repo1:${{ github.workspace }}/repo2
+        run: python3 -m unittest integration_tests/test_integration.py

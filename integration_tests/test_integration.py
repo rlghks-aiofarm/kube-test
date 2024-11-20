@@ -1,7 +1,11 @@
-# integration_tests/test_integration.py
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../repo1')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../repo2')))
+
 import unittest
-from repo1.utils import process_data
-from repo2.utils import fetch_and_transform
+from utils import process_data  # repo1/utils.py
+from utils import fetch_and_transform  # repo2/utils.py
 
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
