@@ -27,15 +27,15 @@ jobs:
 
       - name: Remove GitHub Actions cache
         run: |
-          rm -rf .git/modules/repo1
-          rm -rf .git/modules/repo2
+          rm -rf .git/modules/test-repo1
+          rm -rf .git/modules/test-repo2
           git submodule deinit -f --all
 
       - name: List repo1 contents
-        run: ls repo1/
+        run: ls test-repo1/
 
-      - name: List repo2 contents
-        run: ls repo2/
+      - name: List repo1 contents
+        run: ls test-repo2/
 
       # Python 설치
       - name: Set up Python
@@ -56,5 +56,5 @@ jobs:
       # 테스트 실행
       - name: Run integration tests
         env:
-          PYTHONPATH: ${{ github.workspace }}/repo1:${{ github.workspace }}/repo2
+          PYTHONPATH: ${{ github.workspace }}/test-repo1:${{ github.workspace }}/test-repo2
         run: python3 -m unittest integration_tests/test_integration.py
