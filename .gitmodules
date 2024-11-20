@@ -1,6 +1,6 @@
-[submodule "test-repo1"]
-    path = test-repo1
+[submodule "repo1"]
+    path = repo1
     url = https://github.com/rlghks-aiofarm/test-repo1.git
-[submodule "test-repo2"]
-    path = test-repo2
+[submodule "repo2"]
+    path = repo2
     url = https://github.com/rlghks-aiofarm/test-repo2.git

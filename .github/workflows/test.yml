@@ -19,11 +19,16 @@ jobs:
         with:
           submodules: recursive # 서브모듈을 자동으로 체크아웃
 
+      - name: Initialize and update submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule status
+
       - name: List repo1 contents
-        run: ls test-repo1/
+        run: ls repo1/
 
       - name: List repo2 contents
-        run: ls test-repo2/
+        run: ls repo2/
 
       # Python 설치
       - name: Set up Python
@@ -44,5 +49,5 @@ jobs:
       # 테스트 실행
       - name: Run integration tests
         env:
-          PYTHONPATH: ${{ github.workspace }}/test-repo1:${{ github.workspace }}/test-repo2
+          PYTHONPATH: ${{ github.workspace }}/repo1:${{ github.workspace }}/repo2
         run: python3 -m unittest integration_tests/test_integration.py
