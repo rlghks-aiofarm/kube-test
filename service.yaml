@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: example-service
+  name: kube-test-service
 spec:
   selector:
-    app: example
+    app: kube-test
   ports:
     - protocol: TCP
       port: 80

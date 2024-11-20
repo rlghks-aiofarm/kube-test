@@ -1,36 +1,36 @@
 pipeline {
     agent any
-
     stages {
-        stage('Clone Repositories') {
+        stage('Checkout Repositories') {
             steps {
                 script {
-                    git branch: 'main', url: 'https://github.com/aiofarm/repo1.git'
-                    git branch: 'main', url: 'https://github.com/aiofarm/repo2.git'
+                    // 레포1과 레포2를 체크아웃
+                    dir('repo1') {
+                        git url: 'https://github.com/rlghks-aiofarm/test-repo1.git', branch: 'main'
+                    }
+                    dir('repo2') {
+                        git url: 'https://github.com/rlghks-aiofarm/test-repo2.git', branch: 'main'
+                    }
                 }
             }
         }
-        stage('Build Docker Images') {
+        stage('Install Dependencies') {
             steps {
-                sh 'docker build -t rlghks-aiofarm/repo1:latest repo1/'
-                sh 'docker build -t rlghks-aiofarm/repo2:latest repo2/'
+                sh 'pip install -r repo1/requirements.txt'
+                sh 'pip install -r repo2/requirements.txt'
             }
         }
-        stage('Push Docker Images') {
+        stage('Run Independent Tests') {
             steps {
-                sh 'docker push rlghks-aiofarm/repo1:latest'
-                sh 'docker push rlghks-aiofarm/repo2:latest'
+                sh 'python -m unittest discover repo1'
+                sh 'python -m unittest discover repo2'
             }
         }
-        stage('Deploy to Kubernetes') {
+        stage('Run Integration Tests') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
-            }
-        }
-        stage('Run Tests') {
-            steps {
-                sh './test-script.sh'
+                dir('integration_tests') {
+                    sh 'python -m unittest test_integration.py'
+                }
             }
         }
     }

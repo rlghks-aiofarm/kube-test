@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-deployment
+  name: kube-test-deployment
   labels:
-    app: example
+    app: kube-test
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: example
+      app: kube-test
   template:
     metadata:
       labels:
-        app: example
+        app: kube-test
     spec:
       containers:
-        - name: example-container
+        - name: kube-test-container
           image: nginx:latest
           ports:
             - containerPort: 80
