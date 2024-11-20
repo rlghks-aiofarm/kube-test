@@ -24,6 +24,8 @@ jobs:
           git submodule deinit -f --all
           git submodule update --init --recursive
           git submodule status
+          # 서브모듈 상태 출력
+          git submodule foreach 'echo $name; git log -1'
 
       - name: List repo1 contents
         run: ls -la repo1/
