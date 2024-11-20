@@ -4,32 +4,37 @@ name: Test Submodules
 on:
   push:
     branches:
-      - main  # main 브랜치로 푸시될 때 트리거
+      - main # main 브랜치로 푸시될 때 트리거
   pull_request:
     branches:
-      - main  # main 브랜치로 풀 리퀘스트가 생성될 때 트리거
+      - main # main 브랜치로 풀 리퀘스트가 생성될 때 트리거
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # 최신 Ubuntu 환경에서 실행
+    runs-on: ubuntu-latest # 최신 Ubuntu 환경에서 실행
 
     steps:
       # 레포지토리 체크아웃
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          submodules: 'true'  # 서브모듈도 함께 체크아웃
+          submodules: 'true' # 서브모듈도 함께 체크아웃
 
       # Python 설치
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'  # 원하는 Python 버전 설정
+          python-version: '3.8' # 원하는 Python 버전 설정
+
+      - name: Find and merge all requirements
+        run: |
+          find . -type f -name "requirements.txt" -exec cat {} + > combined-requirements.txt
+          sort combined-requirements.txt | uniq > combined-requirements-deduped.txt
 
       # 의존성 설치 (필요한 경우)
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  # requirements.txt에 의존성 추가
+          pip install -r combined-requirements-deduped.txt
 
       # 테스트 실행
       - name: Run tests
