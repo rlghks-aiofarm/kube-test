@@ -17,7 +17,9 @@ sys.path.pop(0)  # repo2 경로를 제거
 
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
+        print(dir(repo1_utils))
         processed = repo1_utils.process_data("integration test")
+        print(dir(repo2_utils))
         result = repo2_utils.fetch_and_transform(processed)
         self.assertEqual(result, "Final Output: Processed: integration test")
 
