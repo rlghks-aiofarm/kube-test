@@ -85,15 +85,13 @@ jobs:
       - name: Checkout test-repo1
         uses: actions/checkout@v3
         with:
-          repository: owner/test-repo1
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: https://github.com/rlghks-aiofarm/test-repo1.git
           path: repo1
 
       - name: Checkout test-repo2
         uses: actions/checkout@v3
         with:
-          repository: owner/test-repo2
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: https://github.com/rlghks-aiofarm/test-repo2.git
           path: repo2
 
       # Set up Python
@@ -133,15 +131,13 @@ jobs:
       - name: Checkout test-repo1 and test-repo2 for deployment
         uses: actions/checkout@v3
         with:
-          repository: owner/test-repo1
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: https://github.com/rlghks-aiofarm/test-repo1.git
           path: repo1
 
       - name: Checkout test-repo2 for deployment
         uses: actions/checkout@v3
         with:
-          repository: owner/test-repo2
-          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: https://github.com/rlghks-aiofarm/test-repo2.git
           path: repo2
 
       # Determine which repo was updated and deploy accordingly
