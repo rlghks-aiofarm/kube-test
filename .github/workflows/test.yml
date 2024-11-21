@@ -1,87 +1,18 @@
-# name: Test Submodules
-
-# on:
-#   push:
-#     branches:
-#       - main
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       # 레포지토리 체크아웃
-#       - name: Checkout code
-#         uses: actions/checkout@v3
-#         with:
-#           submodules: true
-#           fetch-depth: 0
-
-#       - name: Debug submodule URLs
-#         run: cat .gitmodules
-
-#       - name: Test submodule access
-#         run: |
-#           curl -I https://github.com/rlghks-aiofarm/test-repo1.git
-#           curl -I https://github.com/rlghks-aiofarm/test-repo2.git
-
-#       - name: Add submodules
-#         run: |
-#           git submodule add https://github.com/rlghks-aiofarm/test-repo1.git repo1
-#           git submodule add https://github.com/rlghks-aiofarm/test-repo2.git repo2
-
-#       - name: Initialize and update submodules
-#         run: |
-#           git submodule update --init --recursive
-#           git submodule status
-#           git submodule foreach 'echo $name; git log -1'
-
-#       - name: Verify repo1 and repo2 existence
-#         run: |
-#           if [ -d "repo1" ]; then echo "repo1 exists"; else exit 1; fi
-#           if [ -d "repo2" ]; then echo "repo2 exists"; else exit 1; fi
-
-#       - name: List repo1 contents
-#         run: ls -la repo1/
-
-#       - name: List repo2 contents
-#         run: ls -la repo2/
-
-#       # Python 설치
-#       - name: Set up Python
-#         uses: actions/setup-python@v4
-#         with:
-#           python-version: '3.8'
-
-#       - name: Find and merge all requirements
-#         run: |
-#           find . -type f -name "requirements.txt" -exec cat {} + > combined-requirements.txt
-#           sort combined-requirements.txt | uniq > combined-requirements-deduped.txt
-
-#       # 의존성 설치 (필요한 경우)
-#       - name: Install dependencies
-#         run: |
-#           pip install -r combined-requirements-deduped.txt
-
-#       # 테스트 실행
-#       - name: Run integration tests
-#         env:
-#           PYTHONPATH: ${{ github.workspace }}/repo1:${{ github.workspace }}/repo2
-#         run: python3 -m unittest integration_tests/test_integration.py
-
 name: Kube Test Integration
 
 on:
   repository_dispatch:
     types:
-      - repo1-updated
-      - repo2-updated
+      - pr-integration-test
 
 jobs:
   integration-test:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Run Integration Tests
+        run: echo "Running integration tests triggered by PR!"
+
       # Checkout test-repo1 and test-repo2
       - name: Checkout test-repo1
         uses: actions/checkout@v3
@@ -172,3 +103,8 @@ jobs:
             docker build -t ${{ secrets.DOCKER_USERNAME }}/test-repo2:latest ./repo2
             docker push ${{ secrets.DOCKER_USERNAME }}/test-repo2:latest
           fi
+
+      - name: Post Test Results
+        if: failure()
+        run: |
+          echo "Integration test failed. Please check the logs."
