@@ -17,12 +17,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          submodules: true
+          submodules: recursive
+          persist-credentials: false
 
       - name: Initialize and update submodules
         run: |
-          git pull --recurse-submodules
-          git submodule update --remote --recursive
+          echo "Current directory contents:"
+          ls -la
+          echo "Submodule status before init:"
+          git submodule status
+          echo "Updating submodules recursively..."
+          git submodule update --init --recursive --verbose
+          echo "Submodule status after update:"
+          git submodule status
+          echo "Submodule directories:"
+          ls -la repo1/
+          ls -la repo2/
 
       - name: Verify repo1 and repo2 existence
         run: |
