@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   test:
@@ -23,21 +20,19 @@ jobs:
       - name: Debug submodule URLs
         run: cat .gitmodules
 
-      - name: Debug Git Environment
-        run: |
-          pwd
-          ls -la
-          git submodule status
-
       - name: Test submodule access
         run: |
           curl -I https://github.com/rlghks-aiofarm/test-repo1.git
           curl -I https://github.com/rlghks-aiofarm/test-repo2.git
 
+      - name: Add submodules
+        run: |
+          git submodule add https://github.com/rlghks-aiofarm/test-repo1.git repo1
+          git submodule add https://github.com/rlghks-aiofarm/test-repo2.git repo2
+
       - name: Initialize and update submodules
         run: |
-          git submodule sync
-          git submodule update --init --recursive --force
+          git submodule update --init --recursive
           git submodule status
           git submodule foreach 'echo $name; git log -1'
 
