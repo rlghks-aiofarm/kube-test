@@ -37,7 +37,6 @@ jobs:
       - name: Initialize and update submodules
         run: |
           git submodule sync
-          git submodule deinit -f --all
           git submodule update --init --recursive --force
           git submodule status
           git submodule foreach 'echo $name; git log -1'
