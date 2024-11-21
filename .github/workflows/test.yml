@@ -22,10 +22,14 @@ jobs:
       - name: Initialize and update submodules
         run: |
           git ls-tree -r HEAD | grep .gitmodules
-          git submodule update --init --recursive
+          git submodule update --init --recursive --verbose
           git submodule status
-          # 서브모듈 상태 출력
           git submodule foreach 'echo $name; git log -1'
+
+      - name: Verify repo1 and repo2 existence
+        run: |
+          if [ -d "repo1" ]; then echo "repo1 exists"; else exit 1; fi
+          if [ -d "repo2" ]; then echo "repo2 exists"; else exit 1; fi
 
       - name: List repo1 contents
         run: ls -la repo1/
