@@ -72,9 +72,10 @@
 name: Kube Test Integration
 
 on:
-  push:
-    branches:
-      - main
+  repository_dispatch:
+    types:
+      - repo1-updated
+      - repo2-updated
 
 jobs:
   integration-test:
