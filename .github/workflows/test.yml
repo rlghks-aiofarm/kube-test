@@ -17,14 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          submodules: recursive # 서브모듈을 자동으로 체크아웃
+          submodules: true
 
       - name: Initialize and update submodules
         run: |
-          git submodule deinit -f --all
-          git submodule update --init --recursive --verbose
-          git submodule status
-          git submodule foreach 'echo $name; git log -1'
+          git pull --recurse-submodules
+          git submodule update --remote --recursive
 
       - name: Verify repo1 and repo2 existence
         run: |
