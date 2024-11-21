@@ -85,7 +85,7 @@ jobs:
       - name: Checkout test-repo1
         uses: actions/checkout@v3
         with:
-          repository: owner/test-repo1
+          repository: rlghks-aiofarm/test-repo1
           submodules: true # 서브모듈 포함
           fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo1
@@ -93,7 +93,7 @@ jobs:
       - name: Checkout test-repo2
         uses: actions/checkout@v3
         with:
-          repository: owner/test-repo2
+          repository: rlghks-aiofarm/test-repo2
           submodules: true # 서브모듈 포함
           fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo2
@@ -135,13 +135,17 @@ jobs:
       - name: Checkout test-repo1 for deployment
         uses: actions/checkout@v3
         with:
-          repository: https://github.com/rlghks-aiofarm/test-repo1.git
+          repository: rlghks-aiofarm/test-repo1
+          submodules: true # 서브모듈 포함
+          fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo1
 
       - name: Checkout test-repo2 for deployment
         uses: actions/checkout@v3
         with:
-          repository: https://github.com/rlghks-aiofarm/test-repo2.git
+          repository: rlghks-aiofarm/test-repo2
+          submodules: true # 서브모듈 포함
+          fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo2
 
       # Determine which repo was updated and deploy accordingly
