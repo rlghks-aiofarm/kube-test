@@ -16,7 +16,7 @@ repo_paths = {
 sys.path.insert(0, repo_paths['repo2'])
 print("sys.path after adding repo2:", sys.path)  # 경로 추가 후 상태 출력
 
-import utils as repo2_utils
+from repo2_path import utils as repo2_utils
 sys.path.pop(0)  # repo2 경로를 제거
 print("sys.path after removing repo2:", sys.path)  # 경로 제거 후 상태 출력
 
@@ -24,7 +24,7 @@ print("sys.path after removing repo2:", sys.path)  # 경로 제거 후 상태 �
 sys.path.insert(0, repo_paths['repo1'])
 print("sys.path after adding repo1:", sys.path)  # 경로 추가 후 상태 출력
 
-import utils as repo1_utils
+from repo1_path import utils as repo1_utils
 sys.path.pop(0)  # repo1 경로를 제거
 print("sys.path after removing repo1:", sys.path) 
 
