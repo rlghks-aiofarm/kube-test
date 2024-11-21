@@ -24,10 +24,14 @@ jobs:
 
       - name: Debug Git Environment
         run: |
-          git config --list --show-origin
-          git submodule status
+          pwd
           ls -la
-          git remote -v
+          git submodule status
+
+      - name: Test submodule access
+        run: |
+          curl -I https://github.com/rlghks-aiofarm/test-repo1.git
+          curl -I https://github.com/rlghks-aiofarm/test-repo2.git
 
       - name: Initialize and update submodules
         run: |
