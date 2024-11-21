@@ -21,7 +21,7 @@ jobs:
 
       - name: Initialize and update submodules
         run: |
-          git ls-tree -r HEAD | grep .gitmodules
+          git submodule deinit -f --all
           git submodule update --init --recursive --verbose
           git submodule status
           git submodule foreach 'echo $name; git log -1'
