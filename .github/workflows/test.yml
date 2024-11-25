@@ -50,17 +50,17 @@ jobs:
           pip install -r requirements.txt
 
       # Run integration tests
-      - name: Run integration tests
+      - name: Run unit tests
         run: |
           cd repo1
           python -m unittest discover
           cd ../repo2
           python -m unittest discover
       # Run integration tests
-      # - name: Run integration tests
-      #   run: |
-      #     cd repo1
-      #     python -m unittest discover -s ../repo2/tests/integration -p '*.py'
+      - name: Run integration tests
+        run: |
+          cd repo1
+          python -m unittest discover -s ../integration_test/test_integration.py
 
   deploy-if-passed:
     runs-on: ubuntu-latest
