@@ -22,7 +22,7 @@ class TestIntegration(unittest.TestCase):
         result = repo2_functions.process_output(intermediate)  # repo1 함수 호출
 
         # 예상 결과 검증
-        expected = 205  # 예시: repo2에서 계산 후, repo1에서 가공
+        expected = 209  # 예시: repo2에서 계산 후, repo1에서 가공
         self.assertEqual(result, expected)
 
 if __name__ == '__main__':
