@@ -12,18 +12,18 @@ repo_paths = {
     'repo2': repo2_path
 }
 
-from repo2 import utils as repo2_utils
-from repo1 import utils as repo1_utils
+from repo2 import functions as repo2_functions
+from repo1 import functions as repo1_functions
 
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
-        print("repo1_path:", repo1_path)
-        print("repo2_path:", repo2_path)
-        print(dir(repo1_utils))
-        processed = repo1_utils.process_data("integration test")
-        print(dir(repo2_utils))
-        result = repo2_utils.fetch_and_transform(processed)
-        self.assertEqual(result, "Final Output: Processed: integration test")
+        input_value = 100
+        intermediate = repo1_functions.calculate(input_value)  # repo2 함수 호출
+        result = repo2_functions.process_output(intermediate)  # repo1 함수 호출
+
+        # 예상 결과 검증
+        expected = 205  # 예시: repo2에서 계산 후, repo1에서 가공
+        self.assertEqual(result, expected)
 
 if __name__ == '__main__':
     unittest.main()
