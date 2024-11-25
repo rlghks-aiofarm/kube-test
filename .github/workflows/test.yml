@@ -58,8 +58,9 @@ jobs:
           python -m unittest discover
       # Run integration tests
       - name: Run integration tests
-        run: |
-          python -m unittest integration_tests.test_integration
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: python -m unittest integration_tests.test_integration
 
   deploy-if-passed:
     runs-on: ubuntu-latest
