@@ -49,18 +49,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # # Run integration tests
-      # - name: Run integration tests
-      #   run: |
-      #     cd repo1
-      #     python -m unittest discover
-      #     cd ../repo2
-      #     python -m unittest discover
       # Run integration tests
       - name: Run integration tests
         run: |
           cd repo1
-          python -m unittest discover -s ../repo2/tests/integration -p '*.py'
+          python -m unittest discover
+          cd ../repo2
+          python -m unittest discover
+      # Run integration tests
+      # - name: Run integration tests
+      #   run: |
+      #     cd repo1
+      #     python -m unittest discover -s ../repo2/tests/integration -p '*.py'
 
   deploy-if-passed:
     runs-on: ubuntu-latest
