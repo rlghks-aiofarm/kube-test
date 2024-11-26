@@ -24,7 +24,10 @@ jobs:
           path: repo1
 
       - name: Print PR head ref
-        run: echo ${{ toJson(github.event.pull_request) }}
+        run: echo ${{ github.event.client_payload.pr_ref }}
+
+      - name: Debug pr_ref
+        run: echo ${{ github.head_ref }}
 
       - name: Checkout test-repo2
         uses: actions/checkout@v3
@@ -36,7 +39,10 @@ jobs:
           path: repo2
 
       - name: Print PR head ref
-        run: echo ${{ toJson(github.event.pull_request) }}
+        run: echo ${{ github.event.client_payload.pr_ref }}
+
+      - name: Debug pr_ref
+        run: echo ${{ github.head_ref }}
 
       # Set up Python
       - name: Set up Python
