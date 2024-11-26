@@ -60,9 +60,9 @@ jobs:
       - name: Run unit tests
         run: |
           cd repo1
-          python -m unittest discover
+          python -m unittest discover || exit 1
           cd ../repo2
-          python -m unittest discover
+          python -m unittest discover || exit 1
 
       # Add PYTHONPATH
       - name: Add PYTHONPATH
@@ -75,7 +75,7 @@ jobs:
       - name: Run integration tests
         run: |
           cd kube-test
-          python -m unittest integration_tests.test_integration
+          python -m unittest integration_tests.test_integration || exit 1
         env:
           PYTHONPATH: ${{ github.workspace }}
 
