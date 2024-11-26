@@ -6,10 +6,8 @@ import unittest
 repo1_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo1'))
 repo2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo2'))
 
-repo_paths = {
-    'repo1': repo1_path,
-    'repo2': repo2_path
-}
+sys.path.insert(0, repo1_path)
+sys.path.insert(0, repo2_path)
 
 import repo2_functions
 import repo1_functions 
