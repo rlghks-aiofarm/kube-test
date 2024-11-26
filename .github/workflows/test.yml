@@ -23,6 +23,9 @@ jobs:
           fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo1
 
+      - name: Print PR head ref
+        run: echo ${{ github.event.pull_request.head.ref }}
+
       - name: Checkout test-repo2
         uses: actions/checkout@v3
         with:
@@ -31,6 +34,9 @@ jobs:
           submodules: true # 서브모듈 포함
           fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo2
+
+      - name: Print PR head ref
+        run: echo ${{ github.event.pull_request.head.ref }}
 
       # Set up Python
       - name: Set up Python
