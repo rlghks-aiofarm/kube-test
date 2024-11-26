@@ -6,14 +6,13 @@ import unittest
 repo1_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo1'))
 repo2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo2'))
 
-
 repo_paths = {
     'repo1': repo1_path,
     'repo2': repo2_path
 }
 
-from repo2_path import functions as repo2_functions
-from repo2_path import functions as repo1_functions
+import repo2_functions
+import repo1_functions 
 
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
