@@ -56,11 +56,15 @@ jobs:
           python -m unittest discover
           cd ../repo2
           python -m unittest discover
+
+      - name: List Current Directory
+        run: ls -R
+
       # Run integration tests
       - name: Run integration tests
+        run: python -m unittest integration_tests.test_integration
         env:
           PYTHONPATH: ${{ github.workspace }}
-        run: python -m unittest integration_tests.test_integration
 
   deploy-if-passed:
     runs-on: ubuntu-latest
