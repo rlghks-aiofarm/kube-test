@@ -3,8 +3,8 @@ import os
 import unittest
 
 # repo1과 repo2 경로를 명확하게 구분
-repo1_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../repo1'))
-repo2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../repo2'))
+repo1_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo1'))
+repo2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo2'))
 
 
 repo_paths = {
