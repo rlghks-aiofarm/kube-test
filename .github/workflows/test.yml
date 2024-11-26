@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: rlghks-aiofarm/test-repo1
+          ref: ${{ github.head_ref }}
           submodules: true # 서브모듈 포함
           fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo1
@@ -26,6 +27,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: rlghks-aiofarm/test-repo2
+          ref: ${{ github.head_ref }}
           submodules: true # 서브모듈 포함
           fetch-depth: 0 # 전체 커밋 히스토리 가져오기
           path: repo2
@@ -54,6 +56,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: rlghks-aiofarm/kube-test
+          ref: ${{ github.head_ref }}
           path: kube-test
 
       # Run integration tests
