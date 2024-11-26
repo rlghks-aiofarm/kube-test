@@ -16,8 +16,11 @@ class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
         try:
             input_value = 100
+            print("input_value : ", input_value)
             intermediate = repo2_functions.calculate(input_value)  # repo2 함수 호출
+            print("repo2 value : ", intermediate)
             result = repo1_functions.process_output(intermediate)  # repo1 함수 호출
+            print("repo1 value : ", result)
 
             # 예상 결과 검증
             expected = 905  # 예시: repo2에서 계산 후, repo1에서 가공
