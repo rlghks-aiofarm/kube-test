@@ -64,14 +64,20 @@ jobs:
           cd ../repo2
           python -m unittest discover
 
+      # Add PYTHONPATH
+      - name: Add PYTHONPATH
+        run: echo "PYTHONPATH=${PYTHONPATH}:${GITHUB_WORKSPACE}/repo2:${GITHUB_WORKSPACE}/repo1" >> $GITHUB_ENV
+
       - name: List Current Directory
         run: ls -R
 
       # Run integration tests
       - name: Run integration tests
-        run: python -m unittest integration_tests.test_integration
+        run: |
+          cd kube-test
+          python -m unittest integration_tests.test_integration
         env:
-          PYTHONPATH: ${{ github.workspace }}/kube-test
+          PYTHONPATH: ${{ github.workspace }}
 
   deploy-if-passed:
     runs-on: ubuntu-latest
