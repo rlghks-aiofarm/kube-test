@@ -12,8 +12,8 @@ repo_paths = {
     'repo2': repo2_path
 }
 
-from repo2 import functions as repo2_functions
-from repo1 import functions as repo1_functions
+from repo2_path import functions as repo2_functions
+from repo1_path import functions as repo1_functions
 
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
