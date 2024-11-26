@@ -49,6 +49,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      # Checkout kube-test repo
+      - name: Checkout kube-test
+        uses: actions/checkout@v3
+        with:
+          repository: rlghks-aiofarm/kube-test
+          path: kube-test
+
       # Run integration tests
       - name: Run unit tests
         run: |
