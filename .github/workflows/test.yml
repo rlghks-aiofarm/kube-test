@@ -78,6 +78,7 @@ jobs:
           python -m unittest integration_tests.test_integration || exit 1
         env:
           PYTHONPATH: ${{ github.workspace }}
+        continue-on-error: false
 
   deploy-if-passed:
     runs-on: ubuntu-latest
