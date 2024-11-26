@@ -6,14 +6,13 @@ import unittest
 repo1_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo1'))
 repo2_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../repo2'))
 
+sys.path.insert(0, repo1_path)
+sys.path.insert(0, repo2_path)
 
-repo_paths = {
-    'repo1': repo1_path,
-    'repo2': repo2_path
-}
+# 모듈 임포트
+import functions as repo2_functions  # repo2/functions.py의 함수
+import functions as repo1_functions  # repo1/functions.py의 함수
 
-from repo2_path import functions as repo2_functions
-from repo1_path import functions as repo1_functions
 
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
