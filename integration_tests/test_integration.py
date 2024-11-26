@@ -17,8 +17,8 @@ import functions as repo1_functions  # repo1/functions.py의 함수
 class TestIntegration(unittest.TestCase):
     def test_process_and_transform(self):
         input_value = 100
-        intermediate = repo1_functions.calculate(input_value)  # repo2 함수 호출
-        result = repo2_functions.process_output(intermediate)  # repo1 함수 호출
+        intermediate = repo2_functions.calculate(input_value)  # repo2 함수 호출
+        result = repo1_functions.process_output(intermediate)  # repo1 함수 호출
 
         # 예상 결과 검증
         expected = 209  # 예시: repo2에서 계산 후, repo1에서 가공
