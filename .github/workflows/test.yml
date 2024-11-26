@@ -71,7 +71,7 @@ jobs:
       - name: Run integration tests
         run: python -m unittest integration_tests.test_integration
         env:
-          PYTHONPATH: ${{ github.workspace }}
+          PYTHONPATH: ${{ github.workspace }}/kube-test
 
   deploy-if-passed:
     runs-on: ubuntu-latest
